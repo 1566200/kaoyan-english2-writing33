@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="零基础考研英语二作文学习网站：8 个时态、8 个从句、48 个主题词、96 个功能句、15 个模板、40 篇范文、20 个预测题眼、70 道刷题、学习热力图与 7 天急救计划。">
+  <meta name="description" content="零基础考研英语二作文学习网站：8 个时态、8 个从句、96 个功能句、15 个模板、40 篇范文、20 个预测题眼、70 道刷题、模板句背诵收藏、自定义句库、AI 批改和学习热力图。">
   <meta name="theme-color" content="#163f35">
   <title>英二作文急救站 · 零基础也能下笔</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23163f35'/%3E%3Cpath d='M18 18h28v7H26v7h16v7H26v7h20v7H18z' fill='%23f3cb70'/%3E%3C/svg%3E">
@@ -1556,7 +1556,8 @@ h1, h2, h3, h4 { line-height: 1.25; }
 .sentence-foot {
   display: flex;
   align-items: center;
-  gap: 6px;
+  flex-wrap: wrap;
+  gap: 4px 6px;
   margin-top: auto;
   padding-top: 11px;
   border-top: 1px solid var(--line);
@@ -2739,6 +2740,224 @@ h1, h2, h3, h4 { line-height: 1.25; }
 .empty-inline { display: flex; align-items: center; gap: 7px; padding: 12px; border: 1px dashed var(--line-strong); border-radius: 9px; color: var(--muted); font-size: 10.5px; }
 .empty-inline .icon { width: 15px; height: 15px; color: var(--green-2); }
 
+/* ---------------- Template sentences / recite / import ---------------- */
+
+.template-sentence-panel {
+  margin-top: 12px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 10px;
+  background: var(--paper-2);
+  overflow: hidden;
+}
+.template-sentence-panel > summary {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 11px;
+  color: var(--muted);
+  font-size: 10.5px;
+  cursor: pointer;
+  list-style: none;
+}
+.template-sentence-panel > summary::-webkit-details-marker { display: none; }
+.template-sentence-panel > summary .icon { width: 13px; height: 13px; color: var(--green-2); }
+.template-sentence-panel > summary span { margin-left: auto; color: var(--muted-2); font-family: var(--mono); font-size: 9px; }
+.tpl-sentence-list { padding: 0 10px 10px; display: flex; flex-direction: column; gap: 7px; }
+.tpl-sentence-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+}
+.tpl-sentence-copy { min-width: 0; }
+.tpl-sentence-kind { display: inline-block; margin-bottom: 3px; color: var(--coral); font-size: 8.5px; letter-spacing: .03em; }
+.tpl-en { margin: 0; color: var(--ink-2); font-family: var(--serif); font-size: 13px; line-height: 1.55; }
+.tpl-zh { margin: 3px 0 0; color: var(--muted); font-size: 10px; line-height: 1.55; }
+.tpl-sentence-actions { display: flex; flex-direction: column; gap: 3px; flex: 0 0 auto; }
+.tpl-sentence-actions .mini-btn { white-space: nowrap; }
+.tpl-sentence-actions .mini-btn.is-saved { color: var(--amber-2); background: var(--amber-soft); }
+.template-foot-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-left: auto; }
+.template-footer { flex-wrap: wrap; }
+.template-footer .template-foot-actions { margin-left: 0; }
+.template-footer > .btn-primary { margin-left: auto; }
+
+/* sentence view modes */
+
+.sentence-view-switch { margin-left: auto; padding: 3px; font-size: 9.5px; }
+.sentence-view-switch button { padding: 4px 8px; }
+.sentence-view-zh .sentence-en,
+.sentence-view-zh .sentence-variants { display: none !important; }
+.sentence-view-zh .sentence-card { background: linear-gradient(180deg, #fffdf7, var(--paper-2)); }
+.sentence-view-zh .sentence-card::after {
+  content: "英文已隐藏 · 点“背这句”看中文默写";
+  display: block;
+  margin-top: 8px;
+  color: var(--muted-2);
+  font-size: 9px;
+}
+.sentence-view-en .sentence-zh,
+.sentence-view-en .sentence-note { display: none !important; }
+.mini-btn.danger { color: var(--coral); }
+.mini-btn.danger:hover { color: #a34f36; background: var(--coral-soft); }
+
+/* import */
+
+.import-sentence-form { margin-top: 8px; }
+.import-sentence-form label { display: block; margin-bottom: 6px; color: var(--muted); font-size: 11px; }
+.import-textarea {
+  width: 100%;
+  min-height: 210px;
+  padding: 13px 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  line-height: 1.8;
+  resize: vertical;
+}
+.import-textarea:focus { outline: 2px solid rgba(44, 106, 87, .25); border-color: var(--green-3); }
+.import-hint { margin: 7px 0 0; color: var(--muted-2); font-size: 10px; }
+.import-actions { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 14px; }
+
+/* recite */
+
+.recite-modes { margin-bottom: 12px; width: fit-content; max-width: 100%; }
+.recite-stage { min-height: 260px; }
+.recite-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+.recite-progress { color: var(--muted); font-family: var(--mono); font-size: 10px; }
+.recite-mode-label { color: var(--green-2); font-size: 10px; }
+.recite-card {
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper);
+  box-shadow: var(--shadow-sm);
+}
+.recite-prompt { margin: 0 0 14px; font-family: var(--serif); font-size: 21px; line-height: 1.65; }
+.recite-prompt.is-en { color: var(--ink-2); font-size: 19px; }
+.recite-input {
+  width: 100%;
+  min-height: 105px;
+  padding: 12px 13px;
+  border: 1px solid var(--line-strong);
+  border-radius: 9px;
+  color: var(--ink);
+  background: var(--paper-2);
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.75;
+  resize: vertical;
+}
+.recite-reveal { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.recite-answer { padding-top: 2px; }
+.recite-answer-label { display: block; margin-bottom: 5px; color: var(--green-2); font-size: 9.5px; letter-spacing: .04em; }
+.recite-en { margin: 0; color: var(--ink); font-family: var(--serif); font-size: 18px; line-height: 1.6; }
+.recite-zh { margin: 7px 0 0; color: var(--muted); font-size: 12px; line-height: 1.7; }
+.recite-note { margin: 9px 0 0; color: var(--muted-2); font-size: 10px; line-height: 1.6; }
+.recite-compare { margin-top: 12px; padding: 10px 12px; border: 1px dashed var(--line-strong); border-radius: 8px; background: var(--paper-2); }
+.recite-compare p { margin: 3px 0; color: var(--muted); font-size: 11px; line-height: 1.7; }
+.recite-rate { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; margin-top: 16px; padding-top: 12px; border-top: 1px dashed var(--line); }
+.recite-rate > span { margin-right: auto; color: var(--muted); font-size: 10px; }
+.recite-finish { padding: 22px 8px; text-align: center; }
+.recite-finish-num { color: var(--green); font-family: var(--serif); font-size: 52px; line-height: 1; }
+.recite-finish-num span { margin-left: 4px; color: var(--muted); font-family: var(--sans); font-size: 12px; }
+.recite-finish h3 { margin: 9px 0 5px; font-family: var(--serif); font-size: 23px; }
+.recite-finish p { margin: 0 auto 16px; max-width: 390px; color: var(--muted); font-size: 11px; line-height: 1.7; }
+
+/* AI review */
+
+.review-layout { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr); gap: 14px; align-items: start; }
+.review-input-panel, .review-result-panel { padding: 20px; }
+.review-kind { width: fit-content; margin-bottom: 16px; }
+.review-kind button { white-space: nowrap; }
+.review-label { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 6px; color: var(--muted); font-size: 11px; }
+.review-label span { color: var(--muted-2); font-family: var(--mono); font-size: 10px; }
+.review-textarea {
+  width: 100%;
+  min-height: 240px;
+  padding: 13px 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.85;
+  resize: vertical;
+}
+.review-textarea:focus { outline: 2px solid rgba(44, 106, 87, .22); border-color: var(--green-3); }
+.review-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; margin-top: 11px; }
+.review-settings { margin-top: 15px; border-top: 1px dashed var(--line); padding-top: 11px; }
+.review-settings summary { cursor: pointer; color: var(--muted); font-size: 10.5px; }
+.review-settings summary .icon { width: 13px; height: 13px; vertical-align: -2px; color: var(--amber-2); }
+.review-settings > p { margin: 9px 0; }
+.review-check { display: flex; align-items: center; gap: 6px; margin: 9px 0; color: var(--ink-2); font-size: 10.5px; }
+.review-check input { width: 15px; height: 15px; accent-color: var(--green); }
+.ai-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.ai-grid label { display: flex; flex-direction: column; gap: 4px; color: var(--muted); font-size: 9.5px; }
+.ai-grid label:last-child { grid-column: 1 / -1; }
+.ai-grid input {
+  width: 100%;
+  padding: 7px 9px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  color: var(--ink);
+  background: var(--paper-2);
+  font-family: var(--mono);
+  font-size: 10px;
+}
+.review-placeholder { padding: 38px 16px; text-align: center; }
+.review-placeholder-icon { display: grid; place-items: center; width: 52px; height: 52px; margin: 0 auto 11px; border-radius: 15px; color: var(--green); background: var(--mint-2); }
+.review-placeholder-icon .icon { width: 24px; height: 24px; }
+.review-placeholder h3 { margin: 0 0 4px; font-family: var(--serif); font-size: 20px; }
+.review-placeholder p { max-width: 330px; margin: 0 auto; color: var(--muted); font-size: 11px; line-height: 1.7; }
+.review-loading { padding: 48px 16px; text-align: center; color: var(--muted); }
+.review-loading .icon { width: 25px; height: 25px; color: var(--amber-2); animation: spin 1.2s linear infinite; }
+.review-loading p { margin: 9px 0 0; font-size: 11px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.review-output { padding: 2px; }
+.review-score-head { display: flex; align-items: center; gap: 15px; margin-bottom: 13px; }
+.review-score-ring {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 92px;
+  height: 92px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: conic-gradient(var(--green) calc(var(--p) * 1%), var(--paper-3) 0);
+}
+.review-score-ring::before { content: ""; position: absolute; inset: 9px; border-radius: 50%; background: var(--paper); }
+.review-score-ring strong { position: relative; z-index: 1; color: var(--green); font-family: var(--serif); font-size: 31px; line-height: 1; }
+.review-score-ring span { position: relative; z-index: 1; margin-top: -8px; color: var(--muted); font-size: 8px; }
+.review-score-head h2 { margin: 3px 0 3px; font-family: var(--serif); font-size: 25px; }
+.review-score-head p { margin: 0; color: var(--muted); font-size: 10.5px; line-height: 1.65; }
+.review-stats { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 14px; }
+.review-stats span { padding: 3px 7px; border: 1px solid var(--line); border-radius: 5px; color: var(--muted); background: var(--paper-2); font-family: var(--mono); font-size: 8.5px; }
+.review-dims { display: flex; flex-direction: column; gap: 10px; padding: 12px; border-radius: 10px; background: var(--paper-2); }
+.review-dim-top { display: flex; justify-content: space-between; gap: 8px; font-size: 10.5px; }
+.review-dim-top b { color: var(--green-2); font-family: var(--mono); font-size: 10px; }
+.review-dim .skill-bar { margin: 4px 0 2px; }
+.review-dim p { margin: 0; color: var(--muted-2); font-size: 9px; }
+.review-block { margin-top: 15px; padding-top: 13px; border-top: 1px dashed var(--line); }
+.review-block h3 { display: flex; align-items: center; gap: 5px; margin: 0 0 8px; font-family: var(--serif); font-size: 18px; }
+.review-block h3 .icon { width: 15px; height: 15px; color: var(--coral); }
+.review-issues { display: flex; flex-direction: column; gap: 7px; }
+.review-issue { padding: 9px 10px; border: 1px solid var(--line); border-left: 2px solid var(--coral); border-radius: 4px 8px 8px 4px; background: var(--paper-2); }
+.review-issue-head { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.review-issue-head b { font-size: 10.5px; }
+.review-quote { margin: 5px 0 0; color: var(--muted); font-family: var(--serif); font-size: 12px; line-height: 1.6; }
+.review-fix { margin: 3px 0 0; color: var(--green-2); font-size: 10px; line-height: 1.6; }
+.review-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.review-suggestions { margin: 0; padding-left: 17px; color: var(--muted); font-size: 10.5px; line-height: 1.8; }
+.review-actions { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 15px; }
+
 /* ---------------- About ---------------- */
 
 .about-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, .7fr); gap: 22px; align-items: start; }
@@ -3067,7 +3286,7 @@ h1, h2, h3, h4 { line-height: 1.25; }
     bottom: 10px;
     z-index: 34;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: 2px;
     padding: 6px;
     border: 1px solid rgba(201, 189, 166, .7);
@@ -3092,6 +3311,51 @@ h1, h2, h3, h4 { line-height: 1.25; }
   .view { padding-bottom: 88px; }
   .app-footer { padding-bottom: 88px; }
   .toast { bottom: 82px; }
+}
+
+/* ---------------- New features responsive ---------------- */
+
+@media (max-width: 1024px) {
+  .review-layout { grid-template-columns: minmax(0, 1fr); }
+  .review-textarea { min-height: 190px; }
+  .sentence-view-switch { margin-left: 0; }
+  .sentence-view-switch + .result-count { margin-left: auto !important; }
+}
+
+@media (max-width: 820px) {
+  .review-input-panel, .review-result-panel { padding: 17px 15px; }
+  .review-score-head { align-items: flex-start; }
+  .review-score-ring { width: 78px; height: 78px; }
+  .review-score-ring strong { font-size: 26px; }
+  .review-score-head h2 { font-size: 22px; }
+  .ai-grid { grid-template-columns: 1fr; }
+  .ai-grid label:last-child { grid-column: auto; }
+  .tpl-sentence-row { flex-direction: column; }
+  .tpl-sentence-actions { flex-direction: row; flex-wrap: wrap; }
+  .template-foot-actions { margin-left: 0; }
+  .template-footer > .btn-primary { margin-left: 0; }
+  .recite-prompt { font-size: 18px; }
+  .recite-en { font-size: 16px; }
+}
+
+@media (max-width: 640px) {
+  .review-layout { gap: 11px; }
+  .review-kind { width: 100%; display: flex; }
+  .review-kind button { flex: 1; padding: 7px 4px; font-size: 10px; }
+  .review-actions .btn { flex: 1 1 auto; justify-content: center; }
+  .review-score-head { gap: 10px; }
+  .review-score-ring { width: 68px; height: 68px; }
+  .review-score-ring strong { font-size: 23px; }
+  .review-score-head h2 { font-size: 20px; }
+  .review-score-head p { font-size: 9.5px; }
+  .recite-card { padding: 15px; }
+  .recite-prompt { font-size: 17px; }
+  .recite-modes button { font-size: 9px; padding: 6px 5px; }
+  .recite-rate > span { width: 100%; margin-right: 0; }
+  .recite-rate .btn { flex: 1; justify-content: center; }
+  .tpl-sentence-actions .mini-btn { flex: 1; justify-content: center; }
+  .bottom-nav a { font-size: 7.5px; }
+  .bottom-nav a .icon { width: 16px; height: 16px; }
 }
 
 /* ---------------- Print ---------------- */
@@ -3187,6 +3451,7 @@ h1, h2, h3, h4 { line-height: 1.25; }
         </a>
         <a class="nav-item" href="#/plan" data-nav="plan">
           <svg class="icon"><use href="#i-map"></use></svg><span>学习路线</span>
+          <em>可选</em>
         </a>
 
         <p class="nav-label">输入</p>
@@ -3196,7 +3461,7 @@ h1, h2, h3, h4 { line-height: 1.25; }
         </a>
         <a class="nav-item" href="#/sentences" data-nav="sentences">
           <svg class="icon"><use href="#i-quote"></use></svg><span>功能句库</span>
-          <em>96 句</em>
+          <em>96+ 句</em>
         </a>
 
         <p class="nav-label">输出</p>
@@ -3214,6 +3479,10 @@ h1, h2, h3, h4 { line-height: 1.25; }
         <a class="nav-item" href="#/practice" data-nav="practice">
           <svg class="icon"><use href="#i-pen"></use></svg><span>写作练习</span>
           <em>限时</em>
+        </a>
+        <a class="nav-item" href="#/review" data-nav="review">
+          <svg class="icon"><use href="#i-spark"></use></svg><span>AI 批改</span>
+          <em>评分</em>
         </a>
 
         <p class="nav-label">训练</p>
@@ -3290,6 +3559,7 @@ h1, h2, h3, h4 { line-height: 1.25; }
     <a href="#/grammar" data-nav="grammar"><svg class="icon"><use href="#i-grammar"></use></svg><span>语法</span></a>
     <a href="#/sentences" data-nav="sentences"><svg class="icon"><use href="#i-quote"></use></svg><span>句库</span></a>
     <a href="#/quiz" data-nav="quiz"><svg class="icon"><use href="#i-check"></use></svg><span>刷题</span></a>
+    <a href="#/review" data-nav="review"><svg class="icon"><use href="#i-spark"></use></svg><span>批改</span></a>
     <a href="#/essays" data-nav="essays"><svg class="icon"><use href="#i-book"></use></svg><span>范文</span></a>
   </nav>
 
@@ -3307,7 +3577,7 @@ window.KY = window.KY || {};
 KY.meta = {
   siteName: "英二作文急救站",
   siteEn: "Writing Lab for English II",
-  version: "3.0",
+  version: "3.1",
   updated: "2026-11-16",
   examDate: "2026-12-19T14:00:00+08:00",
   examDateNote: "2027研考初试：2026年12月19—20日；英语（二）在12月19日下午。以准考证为准。",
@@ -3622,6 +3892,7 @@ KY.meta = {
     "刷题题为原创练习，不对应官方真题；解析以通用语法规则为准。",
     "PDF 预测资料仅用于提炼题型、话题和功能句，站内为改写/原创示例，不整篇复制原文。",
     "模拟图表数据仅用于写作练习，不对应真实统计。",
+    "AI 批改默认使用本地规则评分，只作学习反馈，不等于官方阅卷；大模型接口需自行提供 Key。",
     "考试分值、字数与题型以当年教育部考试院大纲为准。"
   ]
 };
@@ -9339,7 +9610,9 @@ KY.pdfVocab = [
     activity: {},
     drill: {},
     wrong: {},
-    daily: {}
+    daily: {},
+    customSentences: [],
+    aiConfig: { baseUrl: "https://api.deepseek.com/v1", model: "deepseek-chat", useAI: false }
   };
 
   function loadState() {
@@ -9355,7 +9628,11 @@ KY.pdfVocab = [
         activity: raw.activity && typeof raw.activity === "object" ? raw.activity : {},
         drill: raw.drill && typeof raw.drill === "object" ? raw.drill : {},
         wrong: raw.wrong && typeof raw.wrong === "object" ? raw.wrong : {},
-        daily: raw.daily && typeof raw.daily === "object" ? raw.daily : {}
+        daily: raw.daily && typeof raw.daily === "object" ? raw.daily : {},
+        customSentences: Array.isArray(raw.customSentences) ? raw.customSentences.filter(function (s) {
+          return s && typeof s.en === "string" && s.en.trim() && typeof s.zh === "string";
+        }) : [],
+        aiConfig: Object.assign({ baseUrl: "https://api.deepseek.com/v1", model: "deepseek-chat", useAI: false }, raw.aiConfig && typeof raw.aiConfig === "object" ? raw.aiConfig : {})
       });
     } catch (e) {
       return Object.assign({}, defaultState);
@@ -9723,12 +10000,16 @@ KY.pdfVocab = [
       '</div>';
   }
 
+  function sentencePool() {
+    return (K.sentences || []).concat(state.customSentences || []);
+  }
+
   function getSentence(id) {
-    return (K.sentences || []).find(function (s) { return s.id === id; });
+    return sentencePool().find(function (s) { return s.id === id; });
   }
 
   function randomSentence() {
-    const list = K.sentences || [];
+    const list = sentencePool();
     if (!list.length) return null;
     return list[Math.floor(Math.random() * list.length)];
   }
@@ -9919,6 +10200,7 @@ KY.pdfVocab = [
     essays: { title: "整篇范文", kicker: "输出 · 原创示例" },
     predictions: { title: "预测 20 篇", kicker: "冲刺 · 话题雷达" },
     practice: { title: "写作练习", kicker: "输出 · 限时动笔" },
+    review: { title: "AI 批改", kicker: "反馈 · 客观评分" },
     plan: { title: "学习路线", kicker: "计划 · 从 0 到上考场" },
     quiz: { title: "刷题训练", kicker: "训练 · 每天 10 分钟" },
     stats: { title: "学习数据", kicker: "记录 · 像 GitHub 一样打卡" },
@@ -10149,6 +10431,143 @@ KY.pdfVocab = [
     document.addEventListener("keydown", flashcardKeyHandler);
   }
 
+  /* ---------------- 默写 / 背诵模式 ---------------- */
+
+  function reciteTokens(text) {
+    return String(text || "").toLowerCase().replace(/[^a-z0-9%]+/g, " ").split(/\s+/).filter(Boolean);
+  }
+
+  function openRecite(items, options) {
+    const list = (items || []).filter(function (x) { return x && x.en && x.zh; });
+    if (!list.length) { toast("这里还没有可背的句子"); return; }
+    options = options || {};
+    let index = 0, mode = "zh-en", revealed = false, userInput = "";
+    let okCount = 0, againCount = 0, finished = false;
+
+    function current() { return list[index]; }
+
+    function playCurrent() {
+      if (current()) speak(current().en);
+    }
+
+    function stageHtml() {
+      if (finished) {
+        return '<div class="recite-finish"><div class="recite-finish-num">' + okCount + '<span>/ ' + list.length + '</span></div>' +
+          '<h3>本轮结束</h3><p>会了 ' + okCount + ' 句，还要再看 ' + againCount + ' 句。背不熟的句子回到句库点“背这句”再来一遍。</p>' +
+          '<div class="hero-actions" style="justify-content:center"><button class="btn btn-primary" type="button" data-recite-restart>' + icon("shuffle") + '再来一轮</button><button class="btn btn-secondary" type="button" data-close-modal>关闭</button><a class="btn btn-secondary" href="#/sentences">回句库</a></div></div>';
+      }
+      const item = current();
+      const prompt = mode === "en-zh" ? item.en : item.zh;
+      const promptLabel = mode === "en-zh" ? "看英文，想出中文" : "看中文，写出英文";
+      const answer = mode === "en-zh" ? item.zh : item.en;
+      let inputHtml = "";
+      if (!revealed && mode === "zh-en") {
+        inputHtml = '<textarea class="recite-input" id="recite-input" spellcheck="false" placeholder="先在心里写一遍，也可以打出来...">' + esc(userInput) + '</textarea>';
+      }
+      let answerHtml = "";
+      if (revealed) {
+        const expectedTokens = reciteTokens(item.en);
+        const userTokens = reciteTokens(userInput);
+        const hit = expectedTokens.filter(function (w) { return userTokens.indexOf(w) !== -1; });
+        const pct = expectedTokens.length ? Math.round(hit.length / expectedTokens.length * 100) : 0;
+        answerHtml = '<div class="recite-answer"><span class="recite-answer-label">参考答案</span>' +
+          '<p class="recite-en">' + slotify(item.en, true) + '</p>' +
+          (mode === "en-zh" ? '<p class="recite-zh">' + esc(item.zh) + '</p>' : '<p class="recite-zh">' + esc(item.zh) + '</p>') +
+          (item.note ? '<p class="recite-note"><b>提示：</b>' + esc(item.note) + '</p>' : "") +
+          (mode === "zh-en" && userInput ? '<div class="recite-compare"><p><b>你的答案：</b>' + esc(userInput) + '</p><p><b>关键词覆盖：</b>' + pct + '%（只作提示，不按机器判分）</p></div>' : "") +
+          '</div>' +
+          '<div class="recite-rate"><span>这句掌握了吗？</span><button class="btn btn-primary btn-sm" type="button" data-recite-rate="ok">' + icon("check") + '会了</button><button class="btn btn-secondary btn-sm" type="button" data-recite-rate="again">' + icon("shuffle") + '还要再看</button></div>';
+      } else {
+        answerHtml = '<div class="recite-reveal"><button class="btn btn-primary" type="button" data-recite-reveal>' + icon("play") + '显示答案</button><button class="btn btn-ghost btn-sm" type="button" data-recite-speak>' + icon("quote") + '朗读</button></div>';
+      }
+      return '<div class="recite-top"><span class="recite-progress">第 ' + (index + 1) + ' / ' + list.length + ' 句</span>' +
+        '<div class="recite-mode-label">' + promptLabel + '</div>' +
+        (item.source ? '<span class="badge badge-muted">' + esc(item.source) + '</span>' : "") + '</div>' +
+        '<div class="recite-card"><p class="recite-prompt ' + (mode === "en-zh" ? "is-en" : "") + '">' + esc(prompt) + '</p>' +
+        inputHtml + answerHtml + '</div>';
+    }
+
+    const html = '<div class="modal-head"><span class="eyebrow">默写 / 背诵</span><h2>' + esc(options.title || "背诵模式") + '</h2><p>先看中文写英文，再显示答案对照。点“会了”才会记录为已背。</p></div>' +
+      '<div class="recite-modes segmented"><button class="active" type="button" data-recite-mode="zh-en">中 → 英（默写）</button><button type="button" data-recite-mode="en-zh">英 → 中</button><button type="button" data-recite-mode="zh-only">只看中文</button></div>' +
+      '<div id="recite-stage" class="recite-stage"></div>';
+
+    function paint() {
+      const stage = $("#recite-stage");
+      if (!stage) return;
+      stage.innerHTML = stageHtml();
+      const input = $("#recite-input");
+      if (input) {
+        input.addEventListener("input", function () { userInput = input.value; });
+      }
+    }
+
+    function markOk() {
+      const item = current();
+      if (item && !isSentenceLearned(item.id)) {
+        state.learnedSentences.push(item.id);
+        saveState();
+        recordActivity(1);
+      }
+    }
+
+    function next(delta) {
+      if (!finished) index += delta;
+      if (index >= list.length) { finished = true; index = list.length - 1; }
+      revealed = false; userInput = "";
+      paint();
+    }
+
+    openModal(html, { wide: true, label: options.title || "背诵模式" });
+    paint();
+    const stage = $("#recite-stage");
+    if (stage) {
+      stage.addEventListener("click", function (e) {
+        if (e.target.closest("[data-recite-reveal]")) {
+          const input = $("#recite-input");
+          if (input) userInput = input.value;
+          revealed = true; paint(); return;
+        }
+        if (e.target.closest("[data-recite-speak]")) { playCurrent(); return; }
+        if (e.target.closest("[data-close-modal]")) { closeModal(); return; }
+        if (e.target.closest("[data-recite-rate]")) {
+          const ok = e.target.closest("[data-recite-rate]").getAttribute("data-recite-rate") === "ok";
+          if (ok) { okCount++; markOk(); } else { againCount++; }
+          if (index >= list.length - 1) { finished = true; paint(); }
+          else next(1);
+          return;
+        }
+        if (e.target.closest("[data-recite-restart]")) {
+          index = 0; okCount = 0; againCount = 0; finished = false; revealed = false; userInput = ""; paint(); return;
+        }
+        if (e.target.closest("[data-recite-next]")) { next(1); return; }
+      });
+    }
+    $$("[data-recite-mode]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        mode = btn.getAttribute("data-recite-mode");
+        revealed = false; userInput = "";
+        $$("[data-recite-mode]").forEach(function (b) { b.classList.toggle("active", b === btn); });
+        paint();
+      });
+    });
+    if (flashcardKeyHandler) document.removeEventListener("keydown", flashcardKeyHandler);
+    flashcardKeyHandler = function (e) {
+      if (!$("#recite-stage")) {
+        document.removeEventListener("keydown", flashcardKeyHandler);
+        flashcardKeyHandler = null;
+        return;
+      }
+      if (/TEXTAREA|INPUT|SELECT/.test((document.activeElement && document.activeElement.tagName) || "")) return;
+      if (e.key === " " || e.key === "Enter") {
+        e.preventDefault();
+        if (finished) return;
+        if (!revealed) { revealed = true; paint(); }
+        else { if (index >= list.length - 1) { finished = true; paint(); } else next(1); }
+      }
+    };
+    document.addEventListener("keydown", flashcardKeyHandler);
+  }
+
   /* ============================================================
      页面共用小件
      ============================================================ */
@@ -10295,6 +10714,7 @@ KY.pdfVocab = [
               indexRow("layout", "模板工坊", "小作文 11 类 + 大作文 4 类图表骨架", (K.partATemplates || []).length + (K.partBTemplates || []).length, "#/templates") +
               indexRow("book", "整篇范文", "20 篇基础 + 20 篇预测，逐段英中对照", allEssays().length, "#/essays") +
               indexRow("spark", "预测 20 篇", "按 PDF 题眼重写的冲刺话题与范文", predictionEssays().length, "#/predictions") +
+              indexRow("target", "AI 批改", "粘作文或单句，按维度打分、找基础错误", "评分", "#/review") +
               indexRow("pen", "写作练习", "选一道题，限时写 + 清单自查", "限时", "#/practice") +
               indexRow("check", "刷题训练", "70 道选择题，错题自动进错题本", allQuestions().length, "#/quiz") +
               indexRow("target", "学习数据", "连续天数、热力图、技能掌握和成就", streak + " 天", "#/stats") +
@@ -10528,11 +10948,22 @@ KY.pdfVocab = [
      ============================================================ */
 
   function sentenceCategoryLabel(s) {
+    if (s.user) return "我的句子";
+    if (s.origin === "template") return "模板通用句";
     if (!s.source) return s.category;
     return s.category.replace(/^小作文·/, "").replace(/^大作文·/, "");
   }
 
+  function sentenceSourceBadge(s) {
+    if (s.user) return '<span class="badge badge-green">我的句子</span>';
+    if (s.origin === "template") return '<span class="badge badge-muted">模板收藏</span>';
+    if (s.source && /PDF/.test(s.source)) return '<span class="badge badge-amber">PDF冲刺</span>';
+    return "";
+  }
+
   function sentenceGroup(s) {
+    if (s.user) return "我的句子";
+    if (s.origin === "template") return "模板收藏";
     if (!s.source) return s.category;
     const c = s.category;
     if (/小作文/.test(c)) {
@@ -10552,7 +10983,7 @@ KY.pdfVocab = [
     const learned = isSentenceLearned(s.id);
     return '<article class="sentence-card' + (learned ? " is-learned" : "") + '" data-sentence-id="' + esc(s.id) + '">' +
       '<div class="sentence-top"><span class="cat">' + esc(sentenceCategoryLabel(s)) + '</span>' + levelBadge(s.level) +
-        (s.source ? '<span class="badge badge-amber">PDF冲刺</span>' : "") +
+        sentenceSourceBadge(s) +
         '<span class="scene">' + esc(s.scene) + '</span>' +
         '<button class="sentence-fav' + (isFavorite(s.id) ? " active" : "") + '" type="button" data-sentence-fav aria-label="收藏这句" aria-pressed="' + isFavorite(s.id) + '">' + icon("star") + '</button>' +
       '</div>' +
@@ -10560,36 +10991,89 @@ KY.pdfVocab = [
       '<p class="sentence-zh">' + esc(s.zh) + '</p>' +
       '<div class="sentence-tags">' + tagList((s.tags || []).slice(0, 4)) + '</div>' +
       '<p class="sentence-note"><b>语法点：</b>' + esc(s.note) + '</p>' +
-      '<div class="sentence-variants" hidden><div class="var-label">' + icon("shuffle") + '同义替换 · 点“用这句”直接换进卡片</div>' +
-        (s.variants || []).map(function (v, i) {
+      (s.variants && s.variants.length ? '<div class="sentence-variants" hidden><div class="var-label">' + icon("shuffle") + '同义替换 · 点“用这句”直接换进卡片</div>' +
+        s.variants.map(function (v, i) {
           return '<div class="variant-row"><p>' + slotify(v.en) + '<span>' + esc(v.zh) + '</span></p>' +
             '<button class="variant-use" type="button" data-variant-use="' + i + '">用这句</button></div>';
         }).join("") +
-      '</div>' +
+      '</div>' : "") +
       '<div class="sentence-foot">' +
-        '<button class="mini-btn" type="button" data-sentence-variants>' + icon("shuffle") + '替换句 ' + (s.variants || []).length + '</button>' +
+        (s.variants && s.variants.length ? '<button class="mini-btn" type="button" data-sentence-variants>' + icon("shuffle") + '替换句 ' + s.variants.length + '</button>' : "") +
         '<button class="mini-btn" type="button" data-sentence-copy>' + icon("copy") + '复制</button>' +
         '<button class="mini-btn" type="button" data-sentence-speak>' + icon("play") + '朗读</button>' +
+        '<button class="mini-btn" type="button" data-sentence-recite>' + icon("play") + '背这句</button>' +
         '<button class="mini-btn" type="button" data-sentence-learn>' + icon("check") + (learned ? "取消已背" : "标记已背") + '</button>' +
+        (s.user || s.origin === "template" ? '<button class="mini-btn danger" type="button" data-sentence-remove>' + icon("close") + (s.user ? "删除" : "移出") + '</button>' : "") +
         (learned ? '<span class="learned-flag">' + icon("check") + '已背</span>' : "") +
       '</div>' +
       '</article>';
   }
 
+  function openImportSentenceModal() {
+    openModal(
+      '<div class="modal-head"><span class="eyebrow">我的句库</span><h2>导入自己的句子</h2><p>一行一句，英文和中文用竖线隔开。导入后会出现在“我的句子”分类里，也能背诵、收藏和搜索。</p></div>' +
+      '<div class="import-sentence-form">' +
+        '<label for="import-lines">句子列表</label>' +
+        '<textarea id="import-lines" class="import-textarea" spellcheck="false" placeholder="I am writing to express my sincere gratitude. | 我写信是为了表达诚挚的感谢。\nThe number of students has increased sharply. | 学生人数急剧增加。"></textarea>' +
+        '<p class="import-hint">支持 <code>|</code>、<code>｜</code> 或 Tab 分隔；空行会自动跳过。</p>' +
+        '<div class="import-actions"><span id="import-status" class="small muted"></span><button class="btn btn-primary" type="button" data-import-submit>' + icon("check") + '导入句子</button></div>' +
+      '</div>',
+      { wide: true, label: "导入自己的句子" }
+    );
+    const submit = $("[data-import-submit]");
+    if (!submit) return;
+    submit.addEventListener("click", function () {
+      const raw = ($("#import-lines") && $("#import-lines").value) || "";
+      const lines = raw.split(/\r?\n/);
+      const status = $("#import-status");
+      let added = 0, skipped = 0;
+      lines.forEach(function (line) {
+        const trimmed = line.trim();
+        if (!trimmed || /^#/.test(trimmed)) return;
+        const bits = trimmed.split(/\s*[|｜\t]\s*/);
+        if (bits.length < 2 || !bits[0].trim() || !bits[1].trim()) { skipped++; return; }
+        const entry = {
+          id: "user-" + Date.now() + "-" + Math.random().toString(36).slice(2, 7),
+          category: "我的句子",
+          scene: "自建",
+          level: "可替换",
+          en: bits[0].trim(),
+          zh: bits.slice(1).join(" ").trim(),
+          variants: [],
+          note: "自己导入的句子，可继续改写",
+          tags: ["我的句子", "自建"],
+          source: "自己导入",
+          user: true
+        };
+        addCustomSentence(entry);
+        added++;
+      });
+      if (!added && status) {
+        status.textContent = "没有读到有效句子。格式：英文 | 中文";
+        status.style.color = "var(--coral)";
+        return;
+      }
+      closeModal();
+      renderRoute();
+      toast("导入了 " + added + " 句" + (skipped ? "，跳过 " + skipped + " 行" : ""));
+    });
+  }
+
   pages.sentences = function () {
-    const all = K.sentences || [];
+    const all = sentencePool();
     const categories = [];
     all.forEach(function (s) {
       const g = sentenceGroup(s);
       if (categories.indexOf(g) === -1) categories.push(g);
     });
-    const filters = { q: "", level: "全部", cat: "全部", favOnly: false, pdfOnly: false };
+    const filters = { q: "", level: "全部", cat: "全部", favOnly: false, pdfOnly: false, mineOnly: false };
 
     function filtered() {
       return all.filter(function (s) {
         if (filters.level !== "全部" && s.level !== filters.level) return false;
         if (filters.cat !== "全部" && sentenceGroup(s) !== filters.cat) return false;
-        if (filters.pdfOnly && !s.source) return false;
+        if (filters.pdfOnly && !(s.source && /PDF/.test(s.source))) return false;
+        if (filters.mineOnly && !s.user) return false;
         if (filters.favOnly && !isFavorite(s.id)) return false;
         if (filters.q) {
           const q = filters.q.toLowerCase();
@@ -10618,16 +11102,17 @@ KY.pdfVocab = [
       '<div class="toolbar">' +
         '<div class="search-field">' + icon("search") + '<input id="sentence-search" type="search" placeholder="搜中文、英文或语法点，例如：原因 / that / 图表" autocomplete="off" aria-label="搜索功能句"><button class="search-clear" type="button" data-clear-sentence-search aria-label="清空搜索">' + icon("close") + '</button></div>' +
         '<select class="select" id="sentence-category" aria-label="按功能筛选"><option value="全部">全部分类</option>' + categories.map(function (c) { return '<option value="' + esc(c) + '">' + esc(c) + '</option>'; }).join("") + '</select>' +
-        '<div class="toolbar-right"><button class="btn btn-secondary btn-sm" type="button" data-open-sentence-flashcards>' + icon("play") + '闪卡背句</button><button class="btn btn-secondary btn-sm" type="button" data-random-sentence>' + icon("shuffle") + '随机一句</button></div>' +
+        '<div class="toolbar-right"><button class="btn btn-secondary btn-sm" type="button" data-open-sentence-recite>' + icon("play") + '背诵模式</button><button class="btn btn-secondary btn-sm" type="button" data-open-sentence-flashcards>' + icon("shuffle") + '闪卡</button><button class="btn btn-ghost btn-sm" type="button" data-import-sentence>' + icon("pen") + '导入句子</button></div>' +
       '</div>' +
       '<div class="toolbar" style="margin-top:-4px"><div class="chip-row" id="sentence-levels">' +
         ["全部", "核心必背", "可替换", "加分"].map(function (lv) {
           return '<button class="chip' + (lv === "全部" ? " active" : "") + '" type="button" data-sentence-level="' + lv + '">' + (lv === "全部" ? "全部" : lv) + '</button>';
         }).join("") +
         '<button class="chip" type="button" data-sentence-pdf-filter>' + icon("spark") + '只看 PDF 冲刺</button>' +
+        '<button class="chip" type="button" data-sentence-mine-filter>' + icon("pen") + '只看我的句子</button>' +
         '<button class="chip" type="button" data-sentence-fav-filter>' + icon("star") + '只看收藏</button>' +
-      '</div><span class="result-count" id="sentence-count" style="margin-left:auto">' + countText() + '</span></div>' +
-      '<div id="sentence-results">' + gridHtml() + '</div>';
+      '</div><div class="sentence-view-switch segmented" aria-label="句库显示模式"><button class="active" type="button" data-sentence-view="both">中英对照</button><button type="button" data-sentence-view="zh">只看中文</button><button type="button" data-sentence-view="en">只看英文</button></div><span class="result-count" id="sentence-count" style="margin-left:auto">' + countText() + '</span></div>' +
+      '<div id="sentence-results" class="sentence-view-both">' + gridHtml() + '</div>';
 
     function refreshGrid() {
       const res = $("#sentence-results");
@@ -10641,8 +11126,8 @@ KY.pdfVocab = [
     }
 
     return {
-      html: pageHead("功能句库", "先背 PDF 冲刺句，再补通用句", (K.sentences || []).length + " 个能直接放进作文的功能句：60 句通用 + " + (K.pdfSentences || []).length + " 句按 PDF 改写。每句配 1–2 个同义替换，基础差也能找到顺口的那一句。",
-        '<button class="btn btn-secondary" type="button" data-open-sentence-flashcards>' + icon("play") + '闪卡背句</button><a class="btn btn-primary" href="#/templates">' + icon("layout") + '套进模板</a>') + body,
+      html: pageHead("功能句库", "先背 PDF 冲刺句，再补通用句", all.length + " 个能直接放进作文的功能句：60 句通用 + " + (K.pdfSentences || []).length + " 句按 PDF 改写，另含模板收藏和自己的句子。每句配 1–2 个同义替换，基础差也能找到顺口的那一句。",
+        '<button class="btn btn-secondary" type="button" data-open-sentence-recite>' + icon("play") + '背诵模式</button><a class="btn btn-primary" href="#/templates">' + icon("layout") + '套进模板</a>') + body,
       after: function () {
         const search = $("#sentence-search");
         const cat = $("#sentence-category");
@@ -10674,6 +11159,27 @@ KY.pdfVocab = [
             refreshGrid();
           });
         });
+        $$("[data-sentence-mine-filter]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            filters.mineOnly = !filters.mineOnly;
+            btn.classList.toggle("active", filters.mineOnly);
+            refreshGrid();
+          });
+        });
+        $$("[data-sentence-view]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            const view = btn.getAttribute("data-sentence-view");
+            $$("[data-sentence-view]").forEach(function (b) { b.classList.toggle("active", b === btn); });
+            const res = $("#sentence-results");
+            if (res) res.className = "sentence-view-" + view;
+          });
+        });
+        $$("[data-open-sentence-recite]").forEach(function (btn) {
+          btn.addEventListener("click", function () { openRecite(currentList(), { title: "句库背诵" }); });
+        });
+        $$("[data-import-sentence]").forEach(function (btn) {
+          btn.addEventListener("click", openImportSentenceModal);
+        });
         $$("[data-clear-sentence-search]").forEach(function (btn) {
           btn.addEventListener("click", function () {
             filters.q = "";
@@ -10683,12 +11189,13 @@ KY.pdfVocab = [
         });
         $$("[data-reset-sentence-filter]").forEach(function (btn) {
           btn.addEventListener("click", function () {
-            filters.q = ""; filters.level = "全部"; filters.cat = "全部"; filters.favOnly = false; filters.pdfOnly = false;
+            filters.q = ""; filters.level = "全部"; filters.cat = "全部"; filters.favOnly = false; filters.pdfOnly = false; filters.mineOnly = false;
             if (search) search.value = "";
             if (cat) cat.value = "全部";
             $$("[data-sentence-level]").forEach(function (b) { b.classList.toggle("active", b.getAttribute("data-sentence-level") === "全部"); });
             const favBtn = $("[data-sentence-fav-filter]"); if (favBtn) favBtn.classList.remove("active");
             const pdfBtn = $("[data-sentence-pdf-filter]"); if (pdfBtn) pdfBtn.classList.remove("active");
+            const mineBtn = $("[data-sentence-mine-filter]"); if (mineBtn) mineBtn.classList.remove("active");
             refreshGrid();
           });
         });
@@ -10703,6 +11210,17 @@ KY.pdfVocab = [
             const s = getSentence(id);
             if (!s) return;
 
+            if (e.target.closest("[data-sentence-recite]")) {
+              openRecite([s], { title: "背这一句" });
+              return;
+            }
+            if (e.target.closest("[data-sentence-remove]")) {
+              const isUser = !!s.user;
+              removeCustomSentence(id);
+              toast(isUser ? "已删除这句" : "已移出句库");
+              renderRoute();
+              return;
+            }
             if (e.target.closest("[data-sentence-fav]")) {
               const active = toggleFavorite(id);
               e.target.closest("[data-sentence-fav]").classList.toggle("active", active);
@@ -10798,6 +11316,120 @@ KY.pdfVocab = [
     return e ? "#/essays/" + e.id : "#/essays";
   }
 
+  /* ---- 模板通用句：可背诵、可收藏进句库 ---- */
+
+  function templatePartOf(t) {
+    return (K.partBTemplates || []).indexOf(t) !== -1 ? "part-b" : "part-a";
+  }
+
+  function templateSentenceItems(t) {
+    const items = [];
+    (t.structure || []).forEach(function (x, i) {
+      if (x.en && x.zh) items.push({ kind: "结构句", index: i, en: x.en, zh: x.zh, label: x.label, tip: x.tip || "" });
+    });
+    (t.polish || []).forEach(function (p, i) {
+      if (p.advanced && p.zh) items.push({ kind: "进阶句", index: i, en: p.advanced, zh: p.zh, label: "进阶替换", tip: "基础版：" + p.basic });
+    });
+    (t.dataPhrases || []).forEach(function (p, i) {
+      if (p.en && p.zh) items.push({ kind: "数据句", index: i, en: p.en, zh: p.zh, label: "数据句", tip: "图表描述短语" });
+    });
+    (t.trendPhrases || []).forEach(function (p, i) {
+      if (p.en && p.zh) items.push({ kind: "趋势句", index: i, en: p.en, zh: p.zh, label: "趋势句", tip: "图表趋势短语" });
+    });
+    return items;
+  }
+
+  function templateEntryId(t, item) {
+    const prefix = item.kind === "结构句" ? "s" : item.kind === "进阶句" ? "p" : item.kind === "数据句" ? "d" : "t";
+    return "tpl:" + t.id + ":" + prefix + ":" + item.index;
+  }
+
+  function templateSentenceEntry(t, item) {
+    const part = templatePartOf(t);
+    const id = templateEntryId(t, item);
+    return {
+      id: id,
+      category: "模板通用句",
+      scene: "模板工坊",
+      level: item.kind === "结构句" ? "核心必背" : item.kind === "进阶句" ? "加分" : "可替换",
+      en: item.en,
+      zh: item.zh,
+      variants: [],
+      note: item.tip || ("来自《" + t.name + "》模板"),
+      tags: ["模板", t.name, part === "part-a" ? "小作文" : "大作文", item.kind],
+      source: "模板：" + t.name,
+      origin: "template",
+      sourceId: id,
+      user: false
+    };
+  }
+
+  function templateSentenceCatalog() {
+    const map = {};
+    (K.partATemplates || []).concat(K.partBTemplates || []).forEach(function (t) {
+      templateSentenceItems(t).forEach(function (item) {
+        const entry = templateSentenceEntry(t, item);
+        map[entry.id] = { entry: entry, template: t, part: templatePartOf(t) };
+      });
+    });
+    return map;
+  }
+
+  function isTemplateSaved(id) {
+    return (state.customSentences || []).some(function (s) { return s.id === id; });
+  }
+
+  function addCustomSentence(entry) {
+    if (!entry || !entry.en || !entry.zh) return false;
+    if ((state.customSentences || []).some(function (s) { return s.id === entry.id; })) return false;
+    state.customSentences.push(entry);
+    saveState();
+    return true;
+  }
+
+  function removeCustomSentence(id) {
+    const before = (state.customSentences || []).length;
+    state.customSentences = (state.customSentences || []).filter(function (s) { return s.id !== id; });
+    state.favorites = state.favorites.filter(function (f) { return f !== id; });
+    state.learnedSentences = state.learnedSentences.filter(function (f) { return f !== id; });
+    if (state.customSentences.length !== before) { saveState(); return true; }
+    return false;
+  }
+
+  function toggleTemplateSentence(entry) {
+    if (isTemplateSaved(entry.id)) {
+      removeCustomSentence(entry.id);
+      return false;
+    }
+    addCustomSentence(entry);
+    return true;
+  }
+
+  function templateSentencePanel(t) {
+    const part = templatePartOf(t);
+    const items = templateSentenceItems(t);
+    if (!items.length) return "";
+    return '<details class="template-sentence-panel"><summary>' + icon("quote") + '模板通用句 · 收藏 / 背诵 <span>' + items.length + ' 句</span></summary>' +
+      '<div class="tpl-sentence-list">' + items.map(function (item) {
+        const entry = templateSentenceEntry(t, item);
+        const saved = isTemplateSaved(entry.id);
+        return '<div class="tpl-sentence-row">' +
+          '<div class="tpl-sentence-copy"><span class="tpl-sentence-kind">' + esc(item.label || item.kind) + '</span>' +
+            '<p class="tpl-en">' + slotify(entry.en, true) + '</p><p class="tpl-zh">' + esc(entry.zh) + '</p></div>' +
+          '<div class="tpl-sentence-actions">' +
+            '<button class="mini-btn' + (saved ? " is-saved" : "") + '" type="button" data-template-save-entry="' + esc(entry.id) + '" aria-pressed="' + saved + '">' + icon("star") + (saved ? "已收藏" : "收藏") + '</button>' +
+            '<button class="mini-btn" type="button" data-template-recite-entry="' + esc(entry.id) + '">' + icon("play") + '背这句</button>' +
+          '</div></div>';
+      }).join("") + '</div></details>';
+  }
+
+  function templateFooterActions(t) {
+    return '<div class="template-foot-actions">' +
+      '<button class="btn btn-secondary btn-sm" type="button" data-template-recite="' + esc(t.id) + '">' + icon("play") + '背本类通用句</button>' +
+      '<button class="btn btn-ghost btn-sm" type="button" data-template-save-all="' + esc(t.id) + '">' + icon("star") + '收藏本类通用句</button>' +
+      '</div>';
+  }
+
   function studySlots(slots) {
     return (slots || []).map(function (s) {
       return '<div class="slot-row"><code>' + esc(s.key) + '</code><span>' + esc(s.desc) + '</span></div>';
@@ -10815,7 +11447,7 @@ KY.pdfVocab = [
           (t.structure || []).map(function (x) {
             return '<div class="structure-step"><span class="step-label">' + esc(x.label) + '</span><div><p class="step-en">' + slotify(x.en, true) + '</p><p class="step-zh">' + esc(x.zh) + '</p>' + (x.tip ? '<p class="step-tip">' + esc(x.tip) + '</p>' : "") + '</div></div>';
           }).join("") +
-        '</div></div>' +
+        '</div>' + templateSentencePanel(t) + '</div>' +
         '<div class="template-right"><h4>' + icon("pen") + '整篇骨架 · 可直接套</h4>' +
           '<div class="skeleton-shell"><pre data-template-skeleton="' + esc(t.id) + '">' + slotify(t.skeleton, true) + '</pre>' +
             '<div class="skeleton-actions"><button class="btn btn-secondary btn-sm" type="button" data-copy-template="' + esc(t.id) + '" data-mode="basic">' + icon("copy") + '复制骨架</button>' +
@@ -10827,7 +11459,7 @@ KY.pdfVocab = [
             }).join("") + '</div></div>' +
           '<div class="template-side-block"><h4>' + icon("close") + '格式避坑</h4><ul class="pitfall-list">' + (t.pitfalls || []).map(function (p) { return "<li>" + esc(p) + "</li>"; }).join("") + '</ul></div>' +
         '</div></div>' +
-        '<div class="template-footer"><span class="note">' + esc(t.format) + '</span><a class="btn btn-primary btn-sm" href="' + templateEssayLink(t.name, "part-a") + '">' + icon("book") + '看整篇范文</a></div>' +
+        '<div class="template-footer"><span class="note">' + esc(t.format) + '</span>' + templateFooterActions(t) + '<a class="btn btn-primary btn-sm" href="' + templateEssayLink(t.name, "part-a") + '">' + icon("book") + '看整篇范文</a></div>' +
       '</div></details>';
   }
 
@@ -10847,7 +11479,7 @@ KY.pdfVocab = [
           '</div></div>' +
           '<div class="template-side-block"><h4>' + icon("arrow-right") + '趋势句</h4><div class="slot-list">' +
             (t.trendPhrases || []).map(function (p) { return '<div class="slot-row"><code>' + esc(p.zh) + '</code><span>' + esc(p.en) + '</span></div>'; }).join("") +
-          '</div></div>' +
+          '</div></div>' + templateSentencePanel(t) +
         '</div>' +
         '<div class="template-right"><h4>' + icon("pen") + '整篇骨架 · 基础版 / 进阶版</h4>' +
           '<div class="segmented" style="margin-bottom:10px"><button class="active" type="button" data-skel-tab="basic">基础版</button><button type="button" data-skel-tab="advanced">进阶版</button></div>' +
@@ -10855,7 +11487,7 @@ KY.pdfVocab = [
           '<div data-skel-panel="advanced" hidden><div class="skeleton-shell"><pre>' + slotify(t.skeletonAdvanced || t.skeleton, true) + '</pre><div class="skeleton-actions"><button class="btn btn-secondary btn-sm" type="button" data-copy-template="' + esc(t.id) + '" data-mode="advanced">' + icon("copy") + '复制进阶版</button></div></div></div>' +
           '<div class="template-side-block"><h4>' + icon("close") + '不要这样写</h4><ul class="pitfall-list">' + (t.pitfalls || []).map(function (p) { return "<li>" + esc(p) + "</li>"; }).join("") + '</ul></div>' +
         '</div></div>' +
-        '<div class="template-footer"><span class="note">图表题不要写标题；第一段先描述，第二段再分析。</span><a class="btn btn-primary btn-sm" href="' + templateEssayLink(t.name, "part-b") + '">' + icon("book") + '看整篇范文</a></div>' +
+        '<div class="template-footer"><span class="note">图表题不要写标题；第一段先描述，第二段再分析。</span>' + templateFooterActions(t) + '<a class="btn btn-primary btn-sm" href="' + templateEssayLink(t.name, "part-b") + '">' + icon("book") + '看整篇范文</a></div>' +
       '</div></details>';
   }
 
@@ -10892,6 +11524,54 @@ KY.pdfVocab = [
       html: pageHead("模板工坊", "背骨架，不背整篇死模板", "模板的价值是给你一个不会跑偏的结构。方括号里的主题词、数据、原因必须自己换。先选小作文或大作文，再把骨架抄一遍、换三个词、写一段。",
         '<a class="btn btn-secondary" href="#/essays">' + icon("book") + '看整篇范文</a><a class="btn btn-primary" href="#/sentences">' + icon("quote") + '去句库找替换句</a>') + tabs + body,
       after: function () {
+        $$("[data-template-save-entry]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            const id = btn.getAttribute("data-template-save-entry");
+            const found = templateSentenceCatalog()[id];
+            if (!found) return;
+            const saved = toggleTemplateSentence(found.entry);
+            $$('[data-template-save-entry="' + id + '"]').forEach(function (b) {
+              b.classList.toggle("is-saved", saved);
+              b.setAttribute("aria-pressed", String(saved));
+              b.innerHTML = icon("star") + (saved ? "已收藏" : "收藏");
+            });
+            toast(saved ? "已收藏进功能句库，可去句库背诵" : "已从功能句库移出");
+          });
+        });
+        $$("[data-template-recite-entry]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            const found = templateSentenceCatalog()[btn.getAttribute("data-template-recite-entry")];
+            if (!found) return;
+            openRecite([found.entry], { title: "模板句 · " + found.template.name });
+          });
+        });
+        $$("[data-template-recite]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            const id = btn.getAttribute("data-template-recite");
+            const t = (K.partATemplates || []).concat(K.partBTemplates || []).find(function (x) { return x.id === id; });
+            if (!t) return;
+            const entries = templateSentenceItems(t).map(function (item) { return templateSentenceEntry(t, item); });
+            openRecite(entries, { title: t.name + " · 模板通用句" });
+          });
+        });
+        $$("[data-template-save-all]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            const id = btn.getAttribute("data-template-save-all");
+            const t = (K.partATemplates || []).concat(K.partBTemplates || []).find(function (x) { return x.id === id; });
+            if (!t) return;
+            let added = 0;
+            templateSentenceItems(t).forEach(function (item) {
+              const entry = templateSentenceEntry(t, item);
+              if (!isTemplateSaved(entry.id)) { addCustomSentence(entry); added++; }
+            });
+            $$('[data-template-save-entry^="tpl:' + t.id + ':"]').forEach(function (b) {
+              b.classList.add("is-saved");
+              b.setAttribute("aria-pressed", "true");
+              b.innerHTML = icon("star") + "已收藏";
+            });
+            toast(added ? "已收藏 " + added + " 句，去功能句库查看" : "这一类已经全部收藏过了");
+          });
+        });
         $$("[data-copy-template]").forEach(function (btn) {
           btn.addEventListener("click", function () {
             const id = btn.getAttribute("data-copy-template");
@@ -11080,6 +11760,7 @@ KY.pdfVocab = [
               '<button class="btn btn-secondary btn-sm" type="button" data-essay-fav data-active="' + fav + '">' + icon("star") + (fav ? "已收藏" : "收藏") + '</button>' +
               '<button class="btn btn-secondary btn-sm" type="button" data-speak-essay>' + icon("play") + '朗读全文</button>' +
               '<button class="btn btn-secondary btn-sm" type="button" data-copy-essay>' + icon("copy") + '复制英文</button>' +
+              '<button class="btn btn-secondary btn-sm" type="button" data-review-essay>' + icon("spark") + 'AI 批改这篇</button>' +
               '<button class="btn btn-secondary btn-sm" type="button" data-print-page>' + icon("print") + '打印</button>' +
             '</div>' +
           '</header>' +
@@ -11127,6 +11808,12 @@ KY.pdfVocab = [
         });
         $$("[data-copy-essay]").forEach(function (btn) {
           btn.addEventListener("click", function () { copyText(fullEn, "英文全文已复制"); });
+        });
+        $$("[data-review-essay]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            try { localStorage.setItem("kyWritingReviewDraft", JSON.stringify({ text: fullEn, kind: isA ? "part-a" : "part-b" })); } catch (e) { /* ignore */ }
+            location.hash = "#/review";
+          });
         });
         $$("[data-speak-essay]").forEach(function (btn) {
           btn.addEventListener("click", function () { speak(fullEn); });
@@ -11214,7 +11901,7 @@ KY.pdfVocab = [
 
     return {
       html:
-        pageHead("写作练习", "背会了，就真正写一遍", "选一道题，按建议时间写。写完后先自己对照检查清单，再点“看范文”比较结构。这里不联网、不自动批改，重点是把输入变成输出。",
+        pageHead("写作练习", "背会了，就真正写一遍", "选一道题，按建议时间写。写完后先自己对照检查清单，再点“看范文”比较结构；想找客观问题就点“去 AI 批改”。",
           '<a class="btn btn-secondary" href="#/templates">' + icon("layout") + '先看模板</a><a class="btn btn-primary" href="#/essays/' + esc(essay.id) + '">' + icon("book") + '看这篇范文</a>') +
         '<div class="practice-layout">' +
           '<aside class="practice-side"><section class="panel panel-pad">' +
@@ -11235,6 +11922,7 @@ KY.pdfVocab = [
               '<div class="practice-actions"><span class="practice-save-note" id="practice-save-note">自动保存在本机</span>' +
                 '<button class="btn btn-secondary btn-sm" type="button" data-practice-copy>' + icon("copy") + '复制我的作文</button>' +
                 '<button class="btn btn-secondary btn-sm" type="button" data-practice-save>' + icon("check") + '保存草稿</button>' +
+                '<button class="btn btn-secondary btn-sm" type="button" data-practice-review>' + icon("spark") + '去 AI 批改</button>' +
                 '<button class="btn btn-ghost btn-sm" type="button" data-practice-clear>清空</button>' +
               '</div>' +
             '</section>' +
@@ -11295,6 +11983,16 @@ KY.pdfVocab = [
           btn.addEventListener("click", function () {
             if (!textarea || !textarea.value.trim()) { toast("先写几句再复制"); return; }
             copyText(textarea.value, "你的作文已复制");
+          });
+        });
+        $$("[data-practice-review]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            if (!textarea || !textarea.value.trim()) { toast("先写几句再批改"); textarea && textarea.focus(); return; }
+            saveDraft(false);
+            try {
+              localStorage.setItem("kyWritingReviewDraft", JSON.stringify({ text: textarea.value, kind: isA ? "part-a" : "part-b" }));
+            } catch (e) { /* ignore */ }
+            location.hash = "#/review";
           });
         });
         $$("[data-practice-clear]").forEach(function (btn) {
@@ -11727,7 +12425,7 @@ KY.pdfVocab = [
     const cards = [
       { label: "连续学习", value: streak, unit: "天", icon: "target", tone: "green" },
       { label: "累计学习动作", value: acts, unit: "次", icon: "spark", tone: "amber" },
-      { label: "已背功能句", value: state.learnedSentences.length, unit: "/ 60", icon: "quote", tone: "blue" },
+      { label: "已背功能句", value: state.learnedSentences.length, unit: "/ " + sentencePool().length, icon: "quote", tone: "blue" },
       { label: "已背整篇范文", value: state.learnedEssays.length, unit: "/ 20", icon: "book", tone: "purple" },
       { label: "刷题正确率", value: stats.accuracy, unit: "%", icon: "check", tone: "green" },
       { label: "掌握题目", value: stats.mastered, unit: "/ " + stats.total, icon: "target", tone: "amber" }
@@ -11772,6 +12470,393 @@ KY.pdfVocab = [
         '<section class="panel wrong-preview-card"><div class="drill-history-head"><div><h2>错题本</h2><p>' + stats.wrong + ' 道题等待复习 · 连续答对两次自动移出</p></div><a class="btn btn-secondary btn-sm" href="#/quiz/wrong">' + icon("bookmark") + '去刷错题</a></div>' + wrongHtml + '</section>' +
         '<div class="callout tip mt-3">' + icon("bulb") + '<div><strong>目标不是全绿，是不断。</strong>每天 10 分钟刷 5 题，比周末一次刷 100 题更有效。热力图空白一天没关系，第二天回来就行。</div></div>',
       after: function () {}
+    };
+  };
+
+  /* ============================================================
+     AI 批改 / 客观评分
+     ============================================================ */
+
+  const REVIEW_TYPES = {
+    sentence: { label: "单句", max: 10, target: [8, 40] },
+    "part-a": { label: "小作文 Part A", max: 10, target: [80, 120] },
+    "part-b": { label: "大作文 Part B", max: 15, target: [140, 180] }
+  };
+
+  const REVIEW_CONNECTORS = ["however", "therefore", "moreover", "furthermore", "in addition", "for example", "for instance", "as a result", "on the one hand", "on the other hand", "in conclusion", "first", "second", "finally", "besides", "thus", "meanwhile", "although", "because"];
+
+  function reviewTokens(text) {
+    return String(text || "").toLowerCase().replace(/[^a-z0-9%]+/g, " ").split(/\s+/).filter(Boolean);
+  }
+
+  function reviewWordCount(text) {
+    return reviewTokens(text).length;
+  }
+
+  function reviewStats(text) {
+    const raw = String(text || "").trim();
+    const sentences = raw.split(/[.!?]+/).map(function (s) { return s.trim(); }).filter(function (s) { return reviewTokens(s).length; });
+    const paragraphs = raw.split(/\n\s*\n/).map(function (s) { return s.trim(); }).filter(Boolean);
+    const words = reviewTokens(raw);
+    const unique = new Set(words);
+    const connectors = REVIEW_CONNECTORS.filter(function (c) { return new RegExp("\\b" + c.replace(/ /g, "\\s+") + "\\b", "i").test(raw); });
+    return {
+      words: words.length,
+      sentences: sentences.length,
+      paragraphs: paragraphs.length,
+      avgSentence: sentences.length ? Math.round(words.length / sentences.length * 10) / 10 : 0,
+      uniqueRatio: words.length ? Math.round(unique.size / words.length * 100) : 0,
+      connectors: connectors
+    };
+  }
+
+  function localReview(text, kind) {
+    const cfg = REVIEW_TYPES[kind] || REVIEW_TYPES.sentence;
+    const raw = String(text || "").trim();
+    const stats = reviewStats(raw);
+    const issues = [];
+    const strengths = [];
+    let languageDed = 0, formatDed = 0, contentDed = 0;
+
+    function issue(problem, fix, quote, weight, cat) {
+      issues.push({ problem: problem, fix: fix, quote: quote || "", category: cat || "语言", weight: weight || 1 });
+      if (cat === "格式") formatDed += weight || 1;
+      else if (cat === "内容") contentDed += weight || 1;
+      else languageDed += weight || 1;
+    }
+
+    const rules = [
+      { re: /\bbecause\b[^.!?]{0,90}\bso\b/i, problem: "because 和 so 同时使用", fix: "删掉 so，只保留 because；或者用 therefore 另起一句。", w: 1.2 },
+      { re: /\b(although|though)\b[^.!?]{0,90}\b但?\bbut\b/i, problem: "although/though 和 but 同时使用", fix: "although 从句和主句二选一，不要再加 but。", w: 1.2 },
+      { re: /\bmore\s+(better|easier|bigger|cheaper|higher)\b|\bmost\s+(easiest|biggest|best)\b/i, problem: "比较级/最高级重复", fix: "去掉 more/most，保留 better/easier/best 等。", w: 1 },
+      { re: /\bthe society\b/i, problem: "society 泛指时通常不加 the", fix: "改为 society 或 in modern society。", w: 0.8 },
+      { re: /\bpay attention on\b/i, problem: "固定搭配错误：pay attention to", fix: "改为 pay attention to。", w: 1 },
+      { re: /\bthere have\b/i, problem: "there be 句型误用 have", fix: "改为 there is/are。", w: 1 },
+      { re: /\b(people|students|they|we)\s+is\b/i, problem: "主谓不一致", fix: "复数主语用 are；people/students/they/we 后用 are。", w: 1.3 },
+      { re: /\bwill\s+(plays|makes|takes|goes|does|has|is)\b/i, problem: "will 后动词形式错误", fix: "will 后接动词原形。", w: 1.2 },
+      { re: /\bIt is obviously that\b/i, problem: "It is obvious that ... 用形容词", fix: "改为 It is obvious that ...。", w: 1 },
+      { re: /\bThe reason is because\b/i, problem: "reason is because 语义重复", fix: "改为 The reason is that ...。", w: 1 },
+      { re: /\bcan\s+to\b|\bto\s+to\b/i, problem: "情态动词/不定式后多加了 to", fix: "can 后接动词原形；to 后不重复 to。", w: 1 },
+      { re: /[，。；：！？]/g, problem: "英文作文中混入中文标点", fix: "改用英文逗号、句号、分号等。", w: 2 },
+      { re: /\bi\b/g, problem: "第一人称代词 i 没有大写", fix: "改成 I。", w: 0.8 },
+      { re: /[A-Za-z0-9]\s{3,}[A-Za-z0-9]/g, problem: "单词之间有多余空格", fix: "整理空格。", w: 0.3 },
+      { re: /\b([A-Za-z]{3,})\s+\1\b/i, problem: "同一个词连续重复", fix: "删掉重复的词或改写。", w: 0.8 }
+    ];
+    rules.forEach(function (rule) {
+      const m = raw.match(rule.re);
+      if (m) {
+        const quote = String(m[0]).replace(/\s+/g, " ").slice(0, 70);
+        issue(rule.problem, rule.fix, quote, rule.w, "语言");
+      }
+    });
+
+    if (!raw) {
+      issue("内容为空", "先写一段英文，再开始评分。", "", 10, "内容");
+    }
+    if (/^[a-z]/.test(raw)) issue("句首字母没有大写", "每个句子的首字母大写。", raw.slice(0, 20), 0.8, "格式");
+    if (raw && !/[.!?]$/.test(raw)) issue("结尾缺少标点", "句末补句号、问号或感叹号。", raw.slice(-20), 0.6, "格式");
+    if (stats.words < cfg.target[0]) issue("字数偏少", "目标 " + cfg.target[0] + "–" + cfg.target[1] + " 词；先补足要点，不要只写一句空话。", stats.words + " 词", 2, "内容");
+    if (stats.words > cfg.target[1] + 20) issue("字数明显超出", "删掉重复和空泛表达，保留 2–3 个核心要点。", stats.words + " 词", 1, "内容");
+    if (kind === "part-b" && stats.paragraphs < 2) issue("段落过少", "大作文按描述—分析—评论分 3 段，段与段之间空一行。", stats.paragraphs + " 段", 1.2, "格式");
+    if (kind !== "sentence" && stats.connectors.length < 2) issue("逻辑连接词偏少", "加入 however / therefore / for example / in addition 等连接词，让段落关系更清楚。", "", 1, "语言");
+    if (kind === "sentence" && !/\b(is|are|was|were|am|be|do|does|did|have|has|had|will|would|can|could|should|may|might|must|make|makes|take|takes|choose|chooses|increase|increases|play|plays|help|helps|show|shows)\b/i.test(raw)) {
+      issue("没有找到明显谓语动词", "一个完整句子至少要有主语和谓语；检查是否写成了短语。", "", 2, "语言");
+    }
+    if (kind === "part-a") {
+      const hasGreeting = /^(Dear|Notice|Volunteers Wanted|Minutes)/i.test(raw);
+      const hasClosing = /(Yours sincerely|Yours,|Li Ming|Student Union|The English Club|Recorded by)/i.test(raw);
+      if (!hasGreeting) issue("缺少称呼/标题", "书信用 Dear ...，通知用 Notice，会议纪要用 Minutes。", raw.slice(0, 30), 1.2, "格式");
+      if (!hasClosing) issue("缺少落款/署名", "书信补 Yours sincerely, / Li Ming；通知补发布单位和日期。", "", 1, "格式");
+    }
+    if (kind === "part-b") {
+      const descWords = /(chart|graph|figure|table|picture|drawing|illustration|increase|decrease|rise|fall|percent|proportion)/i;
+      if (!descWords.test(raw)) issue("第一段缺少图表/图画描述", "先写图名、单位、趋势或极值，再进入原因分析。", "", 1.2, "内容");
+    }
+    if (stats.uniqueRatio > 0 && stats.uniqueRatio < 42 && stats.words > 80) issue("重复用词偏多", "换用同义表达，避免同一个词反复出现。", stats.uniqueRatio + "% 不同词", 0.8, "语言");
+    if (stats.words >= cfg.target[0] && stats.words <= cfg.target[1]) strengths.push("字数进入目标区间");
+    if (stats.sentences >= 3) strengths.push("句子数量足够");
+    if (stats.connectors.length >= 2) strengths.push("有 " + stats.connectors.length + " 个逻辑连接词");
+    if (stats.paragraphs >= 2) strengths.push("分段清楚");
+
+    let total, dimensions;
+    if (kind === "sentence") {
+      const grammar = Math.max(0, 4 - languageDed * 1.1);
+      const wordChoice = Math.max(0, 3 - (stats.uniqueRatio < 50 ? 1 : 0) - (stats.words < 8 ? 1 : 0));
+      const completeness = Math.max(0, 3 - contentDed * 1.2);
+      dimensions = [
+        { name: "语法", score: Math.round(grammar * 10) / 10, max: 4, comment: grammar >= 3.5 ? "结构完整" : "有语法点需要修正" },
+        { name: "用词", score: Math.round(wordChoice * 10) / 10, max: 3, comment: wordChoice >= 2.5 ? "用词基本准确" : "表达还可更准确" },
+        { name: "完整度", score: Math.round(completeness * 10) / 10, max: 3, comment: completeness >= 2.5 ? "句子成分齐全" : "检查主语、谓语或标点" }
+      ];
+      total = dimensions.reduce(function (a, d) { return a + d.score; }, 0);
+    } else if (kind === "part-a") {
+      const format = Math.max(0, 2 - formatDed);
+      const content = Math.max(0, 4 - contentDed);
+      const language = Math.max(0, 3 - languageDed);
+      const lengthScore = stats.words >= cfg.target[0] && stats.words <= cfg.target[1] + 20 ? 1 : 0;
+      dimensions = [
+        { name: "格式", score: Math.round(format * 10) / 10, max: 2, comment: format >= 2 ? "称呼/落款齐全" : "检查称呼、落款和标题" },
+        { name: "内容要点", score: Math.round(content * 10) / 10, max: 4, comment: content >= 3.5 ? "要点基本覆盖" : "补充题目要求的要点" },
+        { name: "语言", score: Math.round(language * 10) / 10, max: 3, comment: language >= 2.5 ? "语言较稳" : "先修正基础语法错误" },
+        { name: "字数", score: lengthScore, max: 1, comment: lengthScore ? "字数达标" : "控制在 80–120 词" }
+      ];
+      total = dimensions.reduce(function (a, d) { return a + d.score; }, 0);
+    } else {
+      const content = Math.max(0, 5 - contentDed);
+      const structure = Math.max(0, 4 - (stats.paragraphs < 2 ? 1 : 0) - (stats.connectors.length < 2 ? 1 : 0) - formatDed * 0.3);
+      const language = Math.max(0, 4 - languageDed);
+      const lengthScore = Math.max(0, 2 - (stats.words < cfg.target[0] ? 1 : 0) - (stats.words > cfg.target[1] + 20 ? 1 : 0));
+      dimensions = [
+        { name: "内容", score: Math.round(content * 10) / 10, max: 5, comment: content >= 4.5 ? "内容较充实" : "补充原因/例子/建议" },
+        { name: "结构", score: Math.round(structure * 10) / 10, max: 4, comment: structure >= 3.5 ? "分段和衔接清楚" : "按描述—分析—评论展开" },
+        { name: "语言", score: Math.round(language * 10) / 10, max: 4, comment: language >= 3.5 ? "语言较准确" : "先消灭高频语法错误" },
+        { name: "字数", score: Math.round(lengthScore * 10) / 10, max: 2, comment: lengthScore >= 2 ? "字数达标" : "目标 140–180 词" }
+      ];
+      total = dimensions.reduce(function (a, d) { return a + d.score; }, 0);
+    }
+    total = Math.max(0, Math.min(cfg.max, Math.round(total * 2) / 2));
+    const pct = cfg.max ? total / cfg.max : 0;
+    const grade = pct >= .85 ? "优秀" : pct >= .7 ? "良好" : pct >= .55 ? "及格线附近" : "需要加强";
+    const suggestions = [];
+    if (languageDed > 1) suggestions.push("先改主谓一致、时态、固定搭配，再追求高级句。");
+    if (contentDed > 0) suggestions.push("对照题目列 3 个要点，每段只做一件事。");
+    if (kind !== "sentence" && stats.connectors.length < 3) suggestions.push("每段加 1 个连接词：however / therefore / in addition / for example。");
+    if (kind === "sentence") suggestions.push("把这句话放进一个完整作文段落里，再读一遍是否自然。");
+    if (!suggestions.length) suggestions.push("继续保持；下一步练“同义替换”和“段落衔接”。");
+
+    return {
+      kind: kind, label: cfg.label, max: cfg.max, total: total, grade: grade,
+      dimensions: dimensions, issues: issues.slice(0, 12), strengths: strengths,
+      suggestions: suggestions, stats: stats, source: "本地智能评分"
+    };
+  }
+
+  function aiEndpoint(base) {
+    let b = String(base || "").trim().replace(/\/+$/, "");
+    if (!b) return "";
+    if (/\/chat\/completions$/.test(b)) return b;
+    return b + "/chat/completions";
+  }
+
+  function parseAiJson(content) {
+    const text = String(content || "").trim().replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/, "");
+    try { return JSON.parse(text); } catch (e) {
+      const start = text.indexOf("{"), end = text.lastIndexOf("}");
+      if (start !== -1 && end > start) { try { return JSON.parse(text.slice(start, end + 1)); } catch (e2) { return null; } }
+      return null;
+    }
+  }
+
+  async function reviewWithAI(text, kind, cfg) {
+    const info = REVIEW_TYPES[kind] || REVIEW_TYPES.sentence;
+    const prompt = "你是一名考研英语二阅卷老师。请对下面这段" + info.label + "作客观评分，满分" + info.max + "分。\n" +
+      "只输出 JSON，不要输出 Markdown。JSON 结构：{\"total\":number,\"grade\":string,\"dimensions\":[{\"name\":string,\"score\":number,\"max\":number,\"comment\":string}],\"strengths\":[string],\"issues\":[{\"quote\":string,\"problem\":string,\"fix\":string}],\"suggestions\":[string],\"summary\":string}\n" +
+      "评分维度：小作文看格式、内容要点、语言、字数；大作文看内容、结构、语言、字数；单句看语法、用词、完整度。\n\n学生文本：\n" + text;
+    const endpoint = aiEndpoint(cfg.baseUrl);
+    if (!endpoint) throw new Error("Base URL 为空");
+    const controller = typeof AbortController !== "undefined" ? new AbortController() : null;
+    const timer = controller ? setTimeout(function () { controller.abort(); }, 45000) : null;
+    let res;
+    try {
+      res = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Authorization": "Bearer " + cfg.key },
+        body: JSON.stringify({
+          model: cfg.model,
+          temperature: 0.2,
+          messages: [
+            { role: "system", content: "你只返回合法 JSON。评分要客观、具体，指出可修改的句子。" },
+            { role: "user", content: prompt }
+          ]
+        }),
+        signal: controller ? controller.signal : undefined
+      });
+    } finally { if (timer) clearTimeout(timer); }
+    if (!res.ok) throw new Error("接口返回 HTTP " + res.status);
+    const data = await res.json();
+    const content = data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
+    const parsed = parseAiJson(content);
+    if (!parsed || typeof parsed.total !== "number") throw new Error("返回内容不是有效评分 JSON");
+    const total = Math.max(0, Math.min(info.max, Number(parsed.total)));
+    const dimensions = Array.isArray(parsed.dimensions) ? parsed.dimensions.map(function (d) {
+      return { name: String(d.name || "维度"), score: Number(d.score) || 0, max: Number(d.max) || 0, comment: String(d.comment || "") };
+    }) : [];
+    return {
+      kind: kind, label: info.label, max: info.max, total: Math.round(total * 2) / 2,
+      grade: String(parsed.grade || "—"),
+      dimensions: dimensions,
+      issues: Array.isArray(parsed.issues) ? parsed.issues.map(function (x) { return { quote: String(x.quote || ""), problem: String(x.problem || ""), fix: String(x.fix || ""), category: "语言" }; }) : [],
+      strengths: Array.isArray(parsed.strengths) ? parsed.strengths.map(String) : [],
+      suggestions: Array.isArray(parsed.suggestions) ? parsed.suggestions.map(String) : [],
+      summary: String(parsed.summary || ""),
+      stats: reviewStats(text),
+      source: "大模型批改"
+    };
+  }
+
+  function reviewResultHtml(r) {
+    if (!r) return '<div class="review-placeholder"><div class="review-placeholder-icon">' + icon("target") + '</div><h3>评分结果会显示在这里</h3><p>先选类型、粘入英文，点“开始评分”。本地评分不会联网，也不会把你的作文上传。</p></div>';
+    const pct = r.max ? Math.round(r.total / r.max * 100) : 0;
+    const dims = (r.dimensions || []).map(function (d) {
+      const p = d.max ? Math.round(d.score / d.max * 100) : 0;
+      return '<div class="review-dim"><div class="review-dim-top"><span>' + esc(d.name) + '</span><b>' + d.score + ' / ' + d.max + '</b></div>' +
+        '<div class="skill-bar"><span style="width:' + Math.max(0, Math.min(100, p)) + '%"></span></div>' +
+        '<p>' + esc(d.comment || "") + '</p></div>';
+    }).join("");
+    const issues = (r.issues || []).length ? '<div class="review-block"><h3>' + icon("close") + '需要改的地方</h3><div class="review-issues">' + r.issues.map(function (x) {
+      return '<div class="review-issue"><div class="review-issue-head"><span class="badge badge-muted">' + esc(x.category || "语言") + '</span><b>' + esc(x.problem) + '</b></div>' +
+        (x.quote ? '<p class="review-quote">“' + esc(x.quote) + '”</p>' : "") +
+        '<p class="review-fix">→ ' + esc(x.fix) + '</p></div>';
+    }).join("") + '</div></div>' : '<div class="review-block"><h3>' + icon("check") + '没有发现明显基础错误</h3><p class="small muted">规则模型只检查常见错误，不代表人工阅卷没有其他问题。</p></div>';
+    const strengths = (r.strengths || []).length ? '<div class="review-block"><h3>' + icon("spark") + '做得好的地方</h3><div class="review-chips">' + r.strengths.map(function (s) { return '<span class="tag">' + esc(s) + '</span>'; }).join("") + '</div></div>' : "";
+    const suggestions = (r.suggestions || []).length ? '<div class="review-block"><h3>' + icon("bulb") + '下一步建议</h3><ul class="review-suggestions">' + r.suggestions.map(function (s) { return '<li>' + esc(s) + "</li>"; }).join("") + '</ul></div>' : "";
+    return '<div class="review-output">' +
+      '<div class="review-score-head"><div class="review-score-ring" style="--p:' + pct + '"><strong>' + r.total + '</strong><span>/ ' + r.max + '</span></div>' +
+        '<div><span class="eyebrow">' + esc(r.source) + ' · ' + esc(r.label) + '</span><h2>' + esc(r.grade) + '</h2><p>总分 ' + r.total + ' / ' + r.max + '（' + pct + '%）· ' + esc(r.summary || "按客观维度拆开看，先把基础错误改掉。") + '</p></div></div>' +
+      '<div class="review-stats"><span>' + r.stats.words + ' 词</span><span>' + r.stats.sentences + ' 句</span><span>平均 ' + r.stats.avgSentence + ' 词/句</span><span>' + r.stats.paragraphs + ' 段</span><span>' + r.stats.connectors.length + ' 个连接词</span></div>' +
+      '<div class="review-dims">' + dims + '</div>' + issues + strengths + suggestions +
+      '<div class="review-actions"><button class="btn btn-secondary btn-sm" type="button" data-copy-review>' + icon("copy") + '复制评分结果</button><a class="btn btn-ghost btn-sm" href="#/practice">' + icon("pen") + '回去再写一篇</a></div>' +
+    '</div>';
+  }
+
+  function reviewTextForCopy(r) {
+    if (!r) return "";
+    return "【" + r.label + "｜" + r.source + "】\n总分：" + r.total + " / " + r.max + "（" + r.grade + "）\n" +
+      (r.dimensions || []).map(function (d) { return d.name + "：" + d.score + "/" + d.max + " " + (d.comment || ""); }).join("\n") + "\n" +
+      "问题：\n" + (r.issues || []).map(function (x) { return "- " + x.problem + (x.quote ? "（" + x.quote + "）" : "") + " → " + x.fix; }).join("\n") + "\n建议：\n" + (r.suggestions || []).map(function (s) { return "- " + s; }).join("\n");
+  }
+
+  const REVIEW_SAMPLES = {
+    sentence: "I am writing to express my sincere gratitude for your generous help with my application.",
+    "part-a": "Dear Sir or Madam,\n\nI am writing to apply for the volunteer position in the summer English camp. I am a senior student majoring in English, and I have experience in organizing campus activities.\n\nI am patient and responsible, and I can communicate with children clearly. Besides, I am available during the whole summer vacation. I would be grateful if you could consider my application.\n\nYours sincerely,\nLi Ming",
+    "part-b": "The bar chart clearly shows the changes in the number of online learners from 2018 to 2024. During this period, the number increased sharply from 20 million to 65 million.\n\nSeveral factors can account for this trend. For one thing, the widespread use of smartphones has made online learning more convenient. For another, many people have become more willing to learn new skills.\n\nIn my view, this trend is encouraging. However, online learners should also pay attention to face-to-face communication. Only in this way can they benefit fully from technology."
+  };
+
+  pages.review = function () {
+    const draftRaw = (function () {
+      try { return JSON.parse(localStorage.getItem("kyWritingReviewDraft") || "null"); } catch (e) { return null; }
+    })();
+    const initialText = draftRaw && draftRaw.text ? draftRaw.text : "";
+    const initialKind = draftRaw && REVIEW_TYPES[draftRaw.kind] ? draftRaw.kind : "part-a";
+    if (draftRaw) { try { localStorage.removeItem("kyWritingReviewDraft"); } catch (e) { /* ignore */ } }
+
+    return {
+      html:
+        pageHead("AI 批改", "先看客观问题，再谈高级表达", "粘入你写的单句、小作文或大作文，按语法、内容、结构、字数等维度打分。默认“本地智能评分”不联网；也可以填自己的 OpenAI 兼容接口，用大模型精批。",
+          '<a class="btn btn-secondary" href="#/practice">' + icon("pen") + '去写作练习</a><a class="btn btn-primary" href="#/sentences">' + icon("quote") + '去背功能句</a>') +
+        '<div class="review-layout">' +
+          '<section class="panel review-input-panel">' +
+            '<div class="segmented review-kind">' +
+              '<button type="button" data-review-kind="part-a" class="' + (initialKind === "part-a" ? "active" : "") + '">小作文 10 分</button>' +
+              '<button type="button" data-review-kind="part-b" class="' + (initialKind === "part-b" ? "active" : "") + '">大作文 15 分</button>' +
+              '<button type="button" data-review-kind="sentence" class="' + (initialKind === "sentence" ? "active" : "") + '">单句 10 分</button>' +
+            '</div>' +
+            '<label class="review-label" for="review-text">你的英文 <span id="review-count">0 词</span></label>' +
+            '<textarea id="review-text" class="review-textarea" spellcheck="false" placeholder="把英文粘在这里...">' + esc(initialText) + '</textarea>' +
+            '<div class="review-actions"><button class="btn btn-primary" type="button" data-run-review>' + icon("spark") + '开始评分</button>' +
+              '<button class="btn btn-secondary btn-sm" type="button" data-review-sample>' + icon("quote") + '填入示例</button>' +
+              '<button class="btn btn-ghost btn-sm" type="button" data-review-draft>' + icon("pen") + '导入练习草稿</button>' +
+              '<button class="btn btn-ghost btn-sm" type="button" data-clear-review>清空</button></div>' +
+            '<details class="review-settings"><summary>' + icon("spark") + '大模型精批（可选）</summary>' +
+              '<p class="small muted">接口格式：OpenAI 兼容的 <code>/chat/completions</code>。API Key 只保存在当前页面内存，不写入网站；刷新页面需重新填写。若浏览器拦截跨域请求，请使用支持 CORS 的接口或代理。</p>' +
+              '<label class="review-check"><input type="checkbox" id="ai-enabled"> 使用大模型批改</label>' +
+              '<div class="ai-grid"><label>Base URL<input id="ai-base" type="url" value="' + esc((state.aiConfig && state.aiConfig.baseUrl) || "https://api.deepseek.com/v1") + '"></label>' +
+                '<label>模型<input id="ai-model" type="text" value="' + esc((state.aiConfig && state.aiConfig.model) || "deepseek-chat") + '"></label>' +
+                '<label>API Key<input id="ai-key" type="password" placeholder="sk-... 仅本次有效"></label></div>' +
+              '<p class="small muted">说明：不填 Key 时自动使用本地评分；大模型结果也仅供参考，不等于官方阅卷。</p>' +
+            '</details>' +
+          '</section>' +
+          '<section class="panel review-result-panel" id="review-result">' + reviewResultHtml(null) + '</section>' +
+        '</div>' +
+        '<div class="callout tip mt-3">' + icon("bulb") + '<div><strong>怎么用分数：</strong>先看“需要改的地方”，把主谓一致、时态、固定搭配和字数修好；再看“下一步建议”。不要只盯总分，分数只是方向。</div></div>',
+      after: function () {
+        let kind = initialKind;
+        let apiKey = "";
+        const textarea = $("#review-text");
+        const count = $("#review-count");
+        function updateCount() { if (count && textarea) count.textContent = reviewWordCount(textarea.value) + " 词"; }
+        updateCount();
+        if (textarea) textarea.addEventListener("input", updateCount);
+        $$("[data-review-kind]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            kind = btn.getAttribute("data-review-kind");
+            $$("[data-review-kind]").forEach(function (b) { b.classList.toggle("active", b === btn); });
+            const result = $("#review-result");
+            if (result) result.innerHTML = reviewResultHtml(null);
+          });
+        });
+        $$("[data-run-review]").forEach(function (btn) {
+          btn.addEventListener("click", async function () {
+            const text = textarea ? textarea.value.trim() : "";
+            if (!text) { toast("先写几句英文再评分"); if (textarea) textarea.focus(); return; }
+            const resultEl = $("#review-result");
+            if (resultEl) resultEl.innerHTML = '<div class="review-loading">' + icon("spark") + '<p>正在拆句、查常见错误、计算维度分...</p></div>';
+            const enabled = $("#ai-enabled") && $("#ai-enabled").checked;
+            const keyInput = $("#ai-key");
+            apiKey = keyInput ? keyInput.value.trim() : "";
+            const cfg = {
+              baseUrl: ($("#ai-base") && $("#ai-base").value) || state.aiConfig.baseUrl,
+              model: ($("#ai-model") && $("#ai-model").value) || state.aiConfig.model,
+              key: apiKey
+            };
+            if (enabled) {
+              if (!apiKey) {
+                toast("没有填 API Key，先用本地评分");
+              } else {
+                btn.disabled = true;
+                try {
+                  const r = await reviewWithAI(text, kind, cfg);
+                  state.aiConfig.baseUrl = cfg.baseUrl; state.aiConfig.model = cfg.model; saveState();
+                  if (resultEl) resultEl.innerHTML = reviewResultHtml(r);
+                  bindReviewResult(r);
+                  toast("大模型批改完成");
+                  return;
+                } catch (e) {
+                  toast("大模型接口失败，已用本地评分兜底");
+                  console.warn(e);
+                } finally { btn.disabled = false; }
+              }
+            }
+            const r = localReview(text, kind);
+            if (resultEl) resultEl.innerHTML = reviewResultHtml(r);
+            bindReviewResult(r);
+          });
+        });
+        function bindReviewResult(result) {
+          $$("[data-copy-review]").forEach(function (b) {
+            b.onclick = function () { copyText(reviewTextForCopy(result), "评分结果已复制"); };
+          });
+        }
+        $$("[data-review-sample]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            if (textarea) { textarea.value = REVIEW_SAMPLES[kind] || REVIEW_SAMPLES.sentence; updateCount(); textarea.focus(); }
+          });
+        });
+        $$("[data-review-draft]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            let best = null;
+            try {
+              for (let i = 0; i < localStorage.length; i++) {
+                const k = localStorage.key(i);
+                if (!k || k.indexOf("kyWritingDraft.") !== 0) continue;
+                const d = JSON.parse(localStorage.getItem(k) || "{}");
+                if (d && d.text && (!best || (d.updated || 0) > (best.updated || 0))) best = { text: d.text, id: k.replace("kyWritingDraft.", ""), updated: d.updated };
+              }
+            } catch (e) { /* ignore */ }
+            if (!best) { toast("还没有保存过的写作练习草稿"); return; }
+            if (textarea) { textarea.value = best.text; updateCount(); textarea.focus(); }
+            kind = best.id.charAt(0) === "b" ? "part-b" : "part-a";
+            $$("[data-review-kind]").forEach(function (b) { b.classList.toggle("active", b.getAttribute("data-review-kind") === kind); });
+            toast("已导入最近一次草稿");
+          });
+        });
+        $$("[data-clear-review]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            if (textarea) { textarea.value = ""; updateCount(); textarea.focus(); }
+            const result = $("#review-result"); if (result) result.innerHTML = reviewResultHtml(null);
+          });
+        });
+      }
     };
   };
 
